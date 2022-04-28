@@ -14,7 +14,7 @@ def Theater_finder(list, theatername):
                 temp2 = re.sub(regex, "", temp1)
                 temp3 = temp2.replace('-', ' ')
                 temp = temp3.title()
-                listoftheaternames.append(temp)
+                listoftheaternames.append(str_match[iteration_value] + "_" + temp)
         else:
             listoftheaternames.append(str_match[0])
             regex = "[A-Z/]"
@@ -22,6 +22,7 @@ def Theater_finder(list, theatername):
             temp2 = re.sub(regex, "", temp1)
             temp3 = temp2.replace('-', ' ')
             temp = temp3.title()
-            listoftheaternames.append(temp)
+            listoftheaternames.append(str_match[1] + "_" + temp)
+
 
     return listoftheaternames
