@@ -118,12 +118,12 @@ def movies_command(update, context):
 
 
 if __name__ == "__main__":
-    
+
     # stored in Heroku and is taken from there
     PORT = os.environ.get('PORT')
     API_KEY = os.getenv('API_KEY')
     HEROKU_LINK = os.getenv('HEROKU_LINK')
-    
+
     updater = Updater(API_KEY, use_context=True)
     dp = updater.dispatcher
 
@@ -134,8 +134,8 @@ if __name__ == "__main__":
     dp.add_handler(CommandHandler("city", city_command))
     dp.add_handler(CommandHandler("movies", movies_command))
 
-    updater.start_webhook(listen="0.0.0.0", port=int(PORT),url_path=API_KEY)
-    updater.bot.setWebhook(HEROKU_LINK + API_KEY)
+    updater.start_webhook(listen="0.0.0.0", port=int(PORT),url_path=API_KEY,webhook_url=HEROKU_LINK + API_KEY)
+    # updater.bot.setWebhook(HEROKU_LINK + API_KEY)
     # updater.idle()
 
     updater.start_polling(1)
