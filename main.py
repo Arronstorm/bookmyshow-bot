@@ -60,27 +60,29 @@ def city_command(update, context):
 
 def theaters_command(update, context):
 
-    global theater, theaternames, listofdates
+    global theater, theaternames, listofdates, theaternamelist
 
     if len(context.args) == 1:
         theater = (str(context.args[0])).lower()
         theaternames = Theater_finder(theaterlist, theater)
 
-        if len(theaternames) > 2:
+        if len(theaternames) > 1:
             update.message.reply_text(
                 "your search has given these theater names")
 
             for i in range(len(theaternames)):
-                update.message.reply_text(theaternames[i])
+                theaternamelist = theaternames[i].split("_")
+                update.message.reply_text(theaternamelist[1])
 
             update.message.reply_text("copy your theater and then proceed")
             update.message.reply_text("USE  '-'  INSTED OF '  '")
 
         else:
-            update.message.reply_text("Your have selected " + theaternames[1])
+            theaternamelist = theaternames[0].split("_")
+            update.message.reply_text("Your have selected " + theaternamelist[1])
             monthnumber = int(now.strftime('%m'))
             temp = str(
-                Datelist(location, theaternames[0], "20220428", monthnumber))
+                Datelist(location, theaternamelist[0], "20220428", monthnumber))
             temp1 = temp.replace('[', '')
             temp2 = temp1.replace(']', '')
             listofdates = temp2.replace("'", '')
@@ -98,10 +100,14 @@ def date_command(update, context):
 
     if len(context.args) == 1:
         datetocheck = str(context.args[0])
+        update.message.reply_text("You have set the date as " + datetocheck )
         update.message.reply_text("now get the movie list by /movies")
 
     else:
-        datetocheck = now.strftime("%Y%m%d")
+        year = now.strftime("%Y")
+        month = now.strftime("%m")
+        date = now.strftime("%d")
+        datetocheck = year + "-" + month + "-" + date
         update.message.reply_text(IF_NO_ARG_IS_GIVEN_FOR_DATE + datetocheck)
         update.message.reply_text("now get the movie list by /movies")
 
