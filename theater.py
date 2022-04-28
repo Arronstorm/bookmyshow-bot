@@ -22,7 +22,7 @@ def Theater_finder(list, theatername):
             temp2 = re.sub(regex, "", temp1)
             temp3 = temp2.replace('-', ' ')
             temp = temp3.title()
-            listoftheaternames.append(str_match[1] + "_" + temp)
+            listoftheaternames.append(str_match[0] + "_" + temp)
 
 
     return listoftheaternames
