@@ -120,7 +120,7 @@ def movies_command(update, context):
 if __name__ == "__main__":
     
     # stored in Heroku and is taken from there
-    PORT = os.environ.get('PORT')
+    PORT = int(os.getenv('PORT'))
     API_KEY = os.getenv('API_KEY')
     HEROKU_LINK = os.getenv('HEROKU_LINK')
     
