@@ -78,11 +78,12 @@ def theaters_command(update, context):
             update.message.reply_text("USE  '-'  INSTED OF '  '")
 
         else:
+            datesetter = now.strftime("%Y%m%d")
             theaternamelist = theaternames[0].split("_")
             update.message.reply_text("Your have selected " + theaternamelist[1])
             monthnumber = int(now.strftime('%m'))
             temp = str(
-                Datelist(location, theaternamelist[0], "20220428", monthnumber))
+                Datelist(location, theaternamelist[0], datesetter, monthnumber))
             temp1 = temp.replace('[', '')
             temp2 = temp1.replace(']', '')
             listofdates = temp2.replace("'", '')

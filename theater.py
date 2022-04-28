@@ -6,7 +6,7 @@ def Theater_finder(list, theatername):
     str_match = [s for s in list if theatername in s]
     if len(str_match) == 0 :
         return "Theater name incorrect or not found"
-    else: 
+    else:
         if len(str_match) > 1:
             for iteration_value in range(len(str_match)):
                 regex = "[A-Z/]"
@@ -16,7 +16,6 @@ def Theater_finder(list, theatername):
                 temp = temp3.title()
                 listoftheaternames.append(str_match[iteration_value] + "_" + temp)
         else:
-            listoftheaternames.append(str_match[0])
             regex = "[A-Z/]"
             temp1 = str_match[0].replace('/cinemas/', '')
             temp2 = re.sub(regex, "", temp1)
