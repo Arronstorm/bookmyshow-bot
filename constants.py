@@ -1,5 +1,16 @@
 START_MSG = " I am Theater.io for more info type /help"
-HELP_MSG = "<b>List of available commands:</b>\n\n/date - <i>to check for mivies in the particular date</i> \n<i>Syntax- /date the_prefered_date_in_YYYYMMDD\n Eg: /date 20221026 or /date 20220201</i> \n\n/theaters - <i>Give the name of the theater</i>\n\n/location - <i>To set the location</i> \n<i>Syntax- /location the_prefered_location\n Eg: /location trivandrum </i> \n\n/movie - <i>To set the movie you want</i> \n<i>Syntax- /date the_name_of_the_movie \n(NB:there must no be any special char other than hiphen which is used to show space) \n Eg: /movie spider-man-no-way-home </i> \n\n/upcoming - <i>To see the list of all upcoming movies</i> \n\n/now_showing - <i>To see the list of all movies which are in the theaters</i> \n\nAdditional commands on the way"
+HELP_MSG = """List of available commands:\n
+/city - Name of the city without any bracktes and use '_' for '  '
+    Eg: Trivandrum - /city trivandrum 
+          Abu Road - /city abu_road
+          Kota (AP) - /city kota_ap\n
+/theaters - Name of the theater with no special characters and use '-' for '  '
+    Eg: PVR - /theater pvr
+          Aries Plex - /theaters aries-plex\n
+/date - To give the datein yyyy-mm-dd
+    Eg: for 29th of may 2022 - /date 2022-04-29
+          for todays date - /date\n
+/movies - To get the list of movies in the theater you have given"""
 IF_NO_ARG_IS_GIVEN = "you have not given any arguements"
 BETA = "Currently in Beta Testing"
 IF_NO_ARG_IS_GIVEN_FOR_DATE = "The date is now set to "
