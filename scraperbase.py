@@ -3,8 +3,8 @@ import requests
 
 
 def Movienamescraper(location, theatername, date):
-    # url = "https://in.bookmyshow.com/"+ location +"/" + theatername + "/" + date
-    url = 'https://in.bookmyshow.com/trivandrum/cinemas/pvr-kripa-trivandrum/SPIT/20220428'
+    url = "https://in.bookmyshow.com/"+ location + theatername + "/" + date
+    # url = 'https://in.bookmyshow.com/trivandrum/cinemas/pvr-kripa-trivandrum/SPIT/20220428'
     response = requests.get(url)
 
     return BeautifulSoup(response.text, 'lxml')
