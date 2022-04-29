@@ -89,7 +89,7 @@ def theaters_command(update, context):
             listofdates = temp2.replace("'", '')
 
             update.message.reply_text(
-                theaternames[1] + " has shows in the dates below")
+                theaternamelist[1] + " has shows in the dates below")
             update.message.reply_text(listofdates)
             update.message.reply_text("Proceed to /date if this is the one")
             update.message.reply_text("syntax - /date yyyy-mm-dd")
@@ -115,21 +115,20 @@ def date_command(update, context):
 
 def movies_command(update, context):
 
-    listofmovies = Movielist(location, theaternames[0], datetocheck)
+    listofmovies = Movielist(location, theaternamelist[0], datetocheck)
 
     update.message.reply_text(
-        "These are the movies in " + theaternames[1] + " on " + datetocheck)
+        "These are the movies in " + theaternamelist[1] + " on " + datetocheck)
 
     for i in range(len(listofmovies)):
         update.message.reply_text(listofmovies[i])
 
-
 if __name__ == "__main__":
 
     # stored in Heroku and is taken from there
-    PORT = os.environ.get('PORT')
-    API_KEY = os.getenv('API_KEY')
-    HEROKU_LINK = os.getenv('HEROKU_LINK')
+    # PORT = os.environ.get('PORT')
+    API_KEY = "5334977473:AAHICLLndS7YqTN7aZchD-Wi3BqCLBG-dwA"
+    # HEROKU_LINK = os.getenv('HEROKU_LINK')
 
     updater = Updater(API_KEY, use_context=True)
     dp = updater.dispatcher
@@ -141,7 +140,7 @@ if __name__ == "__main__":
     dp.add_handler(CommandHandler("city", city_command))
     dp.add_handler(CommandHandler("movies", movies_command))
 
-    updater.start_webhook(listen="0.0.0.0", port=int(PORT),url_path=API_KEY,webhook_url=HEROKU_LINK + API_KEY)
+    # updater.start_webhook(listen="0.0.0.0", port=int(PORT),url_path=API_KEY,webhook_url=HEROKU_LINK + API_KEY)
     # updater.bot.setWebhook(HEROKU_LINK + API_KEY)
     # updater.idle()
 
