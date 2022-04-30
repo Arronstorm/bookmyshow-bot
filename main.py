@@ -7,7 +7,7 @@ from telegram import *
 from datetime import datetime
 from datelist import Datelist
 from movielist import Movielist
-from theaterlist import Location
+from theaterlist import TheaterListFinder
 from theater import Theater_finder
 
 print("the bot has started...........")
@@ -45,12 +45,12 @@ def city_command(update, context):
         if tempArg in city_list:
             location = city_list[tempArg]
             update.message.reply_text("you have set the city as " + location)
-            theaterlist = Location(location)
+            theaterlist = TheaterListFinder(location)
 
         else:
             location = tempArg
             update.message.reply_text("you have set the city as " + location)
-            theaterlist = Location(location)
+            theaterlist = TheaterListFinder(location)
 
         update.message.reply_text("now add /theaters")
 
@@ -70,8 +70,8 @@ def theaters_command(update, context):
             update.message.reply_text(
                 "your search has given these theater names")
 
-            for i in range(len(theaternames)):
-                theaternamelist = theaternames[i].split("_")
+            for theaterNamesPointer in range(len(theaternames)):
+                theaternamelist = theaternames[theaterNamesPointer].split("_")
                 update.message.reply_text(theaternamelist[1])
 
             update.message.reply_text("copy your theater and then proceed")
@@ -82,17 +82,17 @@ def theaters_command(update, context):
             theaternamelist = theaternames[0].split("_")
             update.message.reply_text("Your have selected " + theaternamelist[1])
             monthnumber = int(now.strftime('%m'))
-            temp = str(
+            tempDatelist = str(
                 Datelist(location, theaternamelist[0], datesetter, monthnumber))
-            temp1 = temp.replace('[', '')
-            temp2 = temp1.replace(']', '')
-            listofdates = temp2.replace("'", '')
+            listofdates = tempDatelist.replace("'", '').replace('[', '').replace(']', '')
 
             update.message.reply_text(
                 theaternamelist[1] + " has shows in the dates below")
             update.message.reply_text(listofdates)
             update.message.reply_text("Proceed to /date if this is the one")
             update.message.reply_text("syntax - /date yyyy-mm-dd")
+    else:
+        update.message.reply_text(IF_NO_ARG_IS_GIVEN)
 
 
 def date_command(update, context):
@@ -141,8 +141,8 @@ if __name__ == "__main__":
     dp.add_handler(CommandHandler("movies", movies_command))
 
     updater.start_webhook(listen="0.0.0.0", port=int(PORT),url_path=API_KEY,webhook_url=HEROKU_LINK + API_KEY)
-    updater.bot.setWebhook(HEROKU_LINK + API_KEY)
+    # updater.bot.setWebhook(HEROKU_LINK + API_KEY)
     # updater.idle()
 
-    updater.start_polling(1)
+    # updater.start_polling(1)
     updater.idle()

@@ -3,7 +3,7 @@ import re
 from scraperbase import Theaterlistscraper
 
 
-def Location(location):
+def TheaterListFinder(location):
     theaterlist = []
     
     soup = Theaterlistscraper(location)
@@ -13,3 +13,5 @@ def Location(location):
             theaterlist.append(link.get("href"))
 
     return theaterlist
+
+print(TheaterListFinder("trivandrum"))
