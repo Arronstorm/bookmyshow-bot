@@ -13,5 +13,3 @@ def TheaterListFinder(location):
             theaterlist.append(link.get("href"))
 
     return theaterlist
-
-print(TheaterListFinder("trivandrum"))
