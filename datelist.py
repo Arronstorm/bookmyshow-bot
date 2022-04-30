@@ -1,22 +1,25 @@
 from scraperbase import Movienamescraper
 from constants import monthslist
 
+
 def Datelist(location, theatername, date, num):
-    temp = []
-    movielist = []
-    monthname = monthslist[num]
+    tempDateArray = []
+    dateListArray = []
+    monthName = monthslist[num]
+    
     datetocheck = date.replace('-', '')
+    
     soup = Movienamescraper(location, theatername, datetocheck)
-    movie_list_finder = soup.find_all('div', {'class': 'date-numeric'})
-   
-    for liElement in movie_list_finder:
-        temp.append(liElement.text)
+    date_list_finder = soup.find_all('div', {'class': 'date-numeric'})
 
-    for i in range(len(temp)):
-        temp1 = temp[i].replace('\t', '')
-        temp2 = temp1.replace('\n', '')
-        if temp2 == '01':
-            monthname = monthslist[num + 1]
-        movielist.append(temp2 +" "+ monthname)
+    for divElement in date_list_finder:
+        tempDateArray.append(divElement.text)
 
-    return movielist
+    for temporaryDateFormatPointer in range(len(tempDateArray)):
+        tempDate = tempDateArray[temporaryDateFormatPointer].replace('\t', '').replace('\n', '')
+        
+        if tempDate == '01':
+            monthName = monthslist[num + 1]
+        dateListArray.append(tempDate + " " + monthName)
+
+    return dateListArray

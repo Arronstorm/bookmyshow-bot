@@ -3,7 +3,7 @@ import re
 from scraperbase import Theaterlistscraper
 
 
-def Location(location):
+def TheaterListFinder(location):
     theaterlist = []
     
     soup = Theaterlistscraper(location)
