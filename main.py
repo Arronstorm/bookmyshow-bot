@@ -3,7 +3,6 @@ import os
 
 from telegram.ext import *
 from constants import *
-from telegram import *
 from datetime import datetime
 from datelist import Datelist
 from movielist import Movielist
